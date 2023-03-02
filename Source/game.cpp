@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include <iostream>
 
 Game::Game() : player(sf::Vector2i(121, 121)) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
@@ -25,7 +26,10 @@ void Game::handleEvents() {
     }
 }
 
-void Game::update() {}
+void Game::update() {
+    deltaTime = clock.restart();
+    std::cout << deltaTime.asSeconds() << std::endl;
+}
 
 void Game::render() {
 

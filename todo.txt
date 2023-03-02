@@ -1,6 +1,6 @@
 [x] Player rendering
-[ ] Set up the github
-[ ] Delta times
+[x] Set up the github
+[x] Delta times
 [ ] Player movements
 [ ] Ennemies :
 		( ) Health bar (Entity class)

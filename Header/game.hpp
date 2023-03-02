@@ -13,9 +13,14 @@ private:
 
 	Player player;
 
+	sf::Clock clock;
+	sf::Time deltaTime;
+
 	void handleEvents();
 	void update();
 	void render();
+
+	void handlePressedKeys();
 
 public:
 	Game();
