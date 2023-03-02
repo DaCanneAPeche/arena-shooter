@@ -1,0 +1,12 @@
+[x] Player rendering
+[ ] Set up the github
+[ ] Delta times
+[ ] Player movements
+[ ] Ennemies :
+		( ) Health bar (Entity class)
+[ ] Melee weapons :
+		( ) Sword
+		( ) Mace
+[ ] Range weapons :
+		( ) Bow
+		( ) Cross bow
