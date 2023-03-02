@@ -1,7 +1,7 @@
 [x] Player rendering
 [x] Set up the github
 [x] Delta times
-[ ] Player movements
+[x] Player movements
 [ ] Ennemies :
 		( ) Health bar (Entity class)
 [ ] Melee weapons :
@@ -10,3 +10,6 @@
 [ ] Range weapons :
 		( ) Bow
 		( ) Cross bow
+
+Bugs ! :
+- player is sometimes still moving slowly until we move it

@@ -6,11 +6,19 @@ class Player
 {
 public:
 	Player(sf::Vector2i pos);
-	void move(int horizontalValue, int verticalValue);
+	void move(float horizontalValue, float verticalValue);
 	sf::RectangleShape getRect();
+	void handleMovement(float deltaTime);
+
+	float horizontalSpeed;
+	float verticalSpeed;
+
+	static constexpr float ACCELERATION = 10,
+									 			 DECELERATION = 8,
+									 			 VELOCITY_CAP = 200;
 
 private:
-	sf::Rect<int> rect;
+	sf::Rect<float> rect;
 	sf::RectangleShape r;
 
 };

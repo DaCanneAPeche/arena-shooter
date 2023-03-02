@@ -3,6 +3,8 @@
 
 Game::Game() : player(sf::Vector2i(121, 121)) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
+    //window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
     // debug("Game", "Window created");
     
     texture.create(250, 250);
@@ -27,8 +29,10 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    deltaTime = clock.restart();
-    std::cout << deltaTime.asSeconds() << std::endl;
+    deltaTime = dtClock.restart().asSeconds();
+
+    player.handleMovement(deltaTime);
+
 }
 
 void Game::render() {
@@ -45,3 +49,4 @@ void Game::render() {
     window.draw(_texture);
     window.display();
 }
+
