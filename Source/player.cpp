@@ -1,7 +1,7 @@
 #include "player.hpp"
 #include <iostream>
 
-Player::Player(sf::Vector2i pos) : rect(pos.x, pos.y, 8, 8) {
+/*Player::Player(sf::Vector2i pos) : rect(pos.x, pos.y, 8, 8) {
 
 	r.setSize(sf::Vector2f(rect.width, rect.height));
 	r.setFillColor(sf::Color::Green);
@@ -18,7 +18,7 @@ sf::RectangleShape Player::getRect() {
 	r.setPosition(rect.left, rect.top);
 
 	return r;
-}
+}*/
 
 void Player::handleMovement(float deltaTime) {
 
@@ -59,8 +59,9 @@ void Player::handleMovement(float deltaTime) {
     else if (verticalSpeed < -1 * VELOCITY_CAP) 
         verticalSpeed = -1 * VELOCITY_CAP;
 
-    move(horizontalSpeed * deltaTime, 
-            verticalSpeed * deltaTime);
+    move(horizontalSpeed, 
+            verticalSpeed,
+            deltaTime);
 
 }
 

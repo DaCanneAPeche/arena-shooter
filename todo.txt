@@ -13,3 +13,6 @@
 
 Bugs ! :
 - player is sometimes still moving slowly until we move it
+
+Possible optimizations :
+- use references to attach the rectangle shape to his shape

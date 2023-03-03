@@ -1,13 +1,13 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "entity.hpp"
 
-class Player
+class Player : public Entity
 {
 public:
-	Player(sf::Vector2i pos);
-	void move(float horizontalValue, float verticalValue);
-	sf::RectangleShape getRect();
+	// Player(sf::Vector2i pos);
+	using Entity::Entity;
 	void handleMovement(float deltaTime);
 
 	float horizontalSpeed;
@@ -18,7 +18,5 @@ public:
 									 			 VELOCITY_CAP = 200;
 
 private:
-	sf::Rect<float> rect;
-	sf::RectangleShape r;
 
 };
