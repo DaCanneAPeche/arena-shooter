@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include <iostream>
 
-Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green) {
+Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
     //window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -32,6 +32,7 @@ void Game::update() {
     deltaTime = dtClock.restart().asSeconds();
 
     player.handleMovement(deltaTime);
+    player.healthBar.update();
 
 }
 
@@ -40,6 +41,9 @@ void Game::render() {
     texture.clear(sf::Color::Blue);
 
     texture.draw(player.getRect());
+
+    texture.draw(player.healthBar.bgRect);
+    texture.draw(player.healthBar.fgRect);
 
     texture.display();
     

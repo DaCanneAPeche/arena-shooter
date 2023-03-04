@@ -1,10 +1,12 @@
 #include "entity.hpp"
 #include <iostream>
 
-Entity::Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color) : rect(pos.x, pos.y, size.x, size.y) {
+Entity::Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life) : 
+	rect(pos.x, pos.y, size.x, size.y), healthBar(rect.left, rect.top, life, _life) {
 
 	r.setSize(sf::Vector2f(rect.width, rect.height));
 	r.setFillColor(color);
+	life = _life;
 
 }
 
@@ -18,5 +20,9 @@ sf::RectangleShape Entity::getRect() {
 	r.setPosition(rect.left, rect.top);
 
 	return r;
+}
+
+void Entity::damage(float amount) {
+	life -= amount;
 }
 
