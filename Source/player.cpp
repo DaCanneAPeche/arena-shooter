@@ -29,11 +29,27 @@ void Player::handleMovement(float deltaTime) {
     }
 
     // Decelration    
-    if (!movingHorizontaly && horizontalSpeed > 0) horizontalSpeed -= DECELERATION;
-    else if (!movingHorizontaly && horizontalSpeed < 0) horizontalSpeed += DECELERATION;
+    if (!movingHorizontaly && horizontalSpeed > 0) {
+        if (horizontalSpeed - DECELERATION > 0) horizontalSpeed -= DECELERATION;
+        else horizontalSpeed = 0;
+    }
+    else if (!movingHorizontaly && horizontalSpeed < 0) {
+        if (horizontalSpeed + DECELERATION < 0) horizontalSpeed += DECELERATION;
+        else horizontalSpeed = 0;
+    }
+    // else if (!movingHorizontaly && horizontalSpeed < 0) horizontalSpeed += DECELERATION;
 
-    if (!movingVerticaly && verticalSpeed > 0) verticalSpeed -= DECELERATION;
-    else if (!movingVerticaly && verticalSpeed < 0) verticalSpeed += DECELERATION;
+    // if (!movingVerticaly && verticalSpeed > 0) verticalSpeed -= DECELERATION;
+    // else if (!movingVerticaly && verticalSpeed < 0) verticalSpeed += DECELERATION;
+
+    if (!movingVerticaly && verticalSpeed > 0) {
+        if (verticalSpeed - DECELERATION > 0) verticalSpeed -= DECELERATION;
+        else verticalSpeed = 0;
+    }
+    else if (!movingVerticaly && verticalSpeed < 0) {
+        if (verticalSpeed + DECELERATION < 0) verticalSpeed += DECELERATION;
+        else verticalSpeed = 0;
+    }
 
     // Velocity cap
     if (horizontalSpeed > VELOCITY_CAP) horizontalSpeed = VELOCITY_CAP;

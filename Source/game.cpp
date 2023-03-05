@@ -1,7 +1,8 @@
 #include "game.hpp"
 #include <iostream>
 
-Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100) {
+Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100),
+               ennemy(sf::Vector2i(100, 100), sf::Vector2i(8, 8), sf::Color::Red, 100) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
     //window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -44,6 +45,11 @@ void Game::render() {
 
     texture.draw(player.healthBar.bgRect);
     texture.draw(player.healthBar.fgRect);
+
+    texture.draw(ennemy.getRect());
+
+    texture.draw(ennemy.healthBar.bgRect);
+    texture.draw(ennemy.healthBar.fgRect);
 
     texture.display();
     
