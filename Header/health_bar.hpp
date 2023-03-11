@@ -12,12 +12,12 @@ public:
 
 	const sf::Color bgColor = sf::Color::Black;
 	const sf::Color fgColor = sf::Color::Green;
+	float& entityPosX;
 
 private:
 	float maxLife;
 	float& life;
 
-	float& entityPosX;
 	float& entityPosY;
 
 };

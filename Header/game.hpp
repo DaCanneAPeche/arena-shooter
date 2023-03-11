@@ -1,7 +1,9 @@
 #include "SFML/Graphics.hpp"
+#include <vector>
 #include "player.hpp"
 #include "ennemy.hpp"
 // #include "debuger.hpp"
+#include <memory>
 
 #ifndef GAME_H
 #define GAME_H
@@ -13,7 +15,8 @@ private:
 	sf::RenderTexture texture;
 
 	Player player;
-	Ennemy ennemy;
+
+	std::vector<std::shared_ptr<Ennemy>> ennemies;
 
 	sf::Clock dtClock;
 	float deltaTime;

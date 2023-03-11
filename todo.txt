@@ -2,8 +2,8 @@
 [x] Set up the github
 [x] Delta times
 [x] Player movements
-[ ] Ennemies :
-		( ) Health bar (Entity class)
+[x] Ennemies :
+		(x) Health bar (Entity class)
 [ ] Melee weapons :
 		( ) Sword
 		( ) Mace
@@ -12,7 +12,6 @@
 		( ) Cross bow
 
 Bugs ! :
-- player is sometimes still moving slowly until we move it
 
 Possible optimizations :
 - use references to attach the rectangle shape to his shape
