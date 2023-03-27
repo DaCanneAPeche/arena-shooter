@@ -35,6 +35,8 @@ void Game::update() {
     deltaTime = dtClock.restart().asSeconds();
 
     player.handleMovement(deltaTime);
+    player.meleeWeapon.update(deltaTime, sf::Vector2f(player.rect.left, player.rect.top), 
+            sf::Mouse::getPosition(window));
 
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
@@ -53,6 +55,9 @@ void Game::render() {
         texture.draw(ennemy.healthBar.fgRect);
         std::cout << ennemy.healthBar.entityPosX << std::endl;
     }*/
+
+    texture.draw(player.meleeWeapon.damageHitboxRect);
+
     for(const auto& ennemy : ennemies) {
         texture.draw(ennemy->getRect());
         texture.draw(ennemy->healthBar.bgRect);

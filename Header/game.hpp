@@ -2,6 +2,8 @@
 #include <vector>
 #include "player.hpp"
 #include "ennemy.hpp"
+#include "weapons/melee_weapon.hpp"
+#include "weapons/sword.hpp"
 // #include "debuger.hpp"
 #include <memory>
 

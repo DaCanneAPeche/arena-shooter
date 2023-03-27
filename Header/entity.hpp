@@ -10,9 +10,9 @@ public:
 	void damage(float amount);
 
 	HealthBar healthBar;
+	sf::Rect<float> rect;
 
 private:
-	sf::Rect<float> rect;
 	sf::RectangleShape r;
 	float life;
 

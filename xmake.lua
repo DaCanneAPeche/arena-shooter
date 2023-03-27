@@ -3,7 +3,7 @@ add_requires("sfml")
 
 target("arena-shooter")
     set_kind("binary")
-    add_files("Source/*.cpp")
+    add_files("Source/*.cpp", "Source/weapons/*.cpp")
     add_includedirs("Header")
 
     add_packages("sfml")
