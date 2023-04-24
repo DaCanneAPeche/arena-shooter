@@ -15,5 +15,10 @@ public:
 
 protected:
 	float rotation;
+	float rotationSpeed;
+	float rotationForce;
+	float maxRotationForce;
+	float rotationMultiplicator;
+	bool rotationDirection;
 
 };

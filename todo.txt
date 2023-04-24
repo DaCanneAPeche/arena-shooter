@@ -15,3 +15,4 @@ Bugs ! :
 
 Possible optimizations :
 - use references to attach the rectangle shape to his shape
+- refactor rotation code (lot of repetitions)
