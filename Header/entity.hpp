@@ -13,10 +13,11 @@ public:
 	sf::Rect<float> rect;
 
 private:
-	sf::RectangleShape r;
 	float life;
 
 protected:
 	void move(float horizontalValue, float verticalValue, float deltaTime);
+	sf::Sprite sprite;
+	sf::RectangleShape r;
 
 };

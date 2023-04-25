@@ -5,7 +5,8 @@
 
 class MeleeWeapon {
 public:
-	void init();
+	MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
+			float _damage);
 	void update(float deltaTime, sf::Vector2f entiyPos, sf::Vector2i mousePos);
 	sf::Sprite rect;
 	sf::Sprite damageHitbox;
@@ -13,10 +14,12 @@ public:
 	sf::RenderTexture textureRect;
 	sf::RenderTexture textureDamage;
 
+	float damage;
+	float rotationForce;
+
 protected:
 	float rotation;
 	float rotationSpeed;
-	float rotationForce;
 	float maxRotationForce;
 	float rotationMultiplicator;
 	bool rotationDirection;

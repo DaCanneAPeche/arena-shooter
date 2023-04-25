@@ -9,7 +9,7 @@ Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Gre
     
     texture.create(250, 250);
 
-    auto ennemy = std::make_shared<Ennemy> (sf::Vector2i(100, 100), sf::Vector2i(8, 8), sf::Color::Red, 100);
+    auto ennemy = std::make_shared<Ennemy>(sf::Vector2i(100, 100));
     ennemies.push_back(ennemy);
 }
 
@@ -41,6 +41,7 @@ void Game::update() {
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
         ennemy.get()->healthBar.update();
+        ennemy.get()->checkDamages(player.meleeWeapon);
     }
 
 }

@@ -1,7 +1,14 @@
 #include "weapons/melee_weapon.hpp"
 #include <cmath>
 
-void MeleeWeapon::init() {
+MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
+			float _damage) {
+
+	rotationSpeed = _rotationSpeed;
+	maxRotationForce = _maxRotationForce;
+	rotationMultiplicator = _rotationMultiplicator;
+	damage = _damage;
+
 	damageHitboxRect.setFillColor(sf::Color::Yellow);
 	rotation = 0;
 	rotationForce = 1;
@@ -16,6 +23,7 @@ void MeleeWeapon::update(float deltaTime, sf::Vector2f entityPos, sf::Vector2i m
 	sf::Vector2f origin = damageHitbox.getOrigin();
 	damageHitbox.setPosition(entityPos.x - origin.x/2, entityPos.y + origin.y);
 	damageHitboxRect.setPosition(damageHitbox.getPosition());
+	rect.setPosition(damageHitbox.getPosition());
 
 	// angle as radiant
 	float rad = atan((entityPos.y - mousePos.y / 4) / (entityPos.x - mousePos.x / 4));
@@ -33,26 +41,26 @@ void MeleeWeapon::update(float deltaTime, sf::Vector2f entityPos, sf::Vector2i m
 	// change rotation
 	float rotationChange = rotationSpeed * deltaTime;
 
-	if (a < 0 && a - rotationChange < 0) {
+	if (a < 0 && a + rotationChange < 0) {
 
 		if (rotationDirection != 0) {
 			rotationForce = 1;
 			rotationDirection = 0;
 		}
 
-		rotationForce += rotationForce * rotationMultiplicator * deltaTime;
+		rotationForce += rotationForce * rotationMultiplicator;
 		if (rotationForce > maxRotationForce) rotationForce = maxRotationForce;
 		rotation -= rotationChange * rotationForce;
 	}
 
-	else if (a > 0 && a + rotationChange > 0) {
+	else if (a > 0 && (a - rotationChange) > 0) {
 
 		if (rotationDirection != 1) {
 			rotationForce = 1;
 			rotationDirection = 1; 
 		} 
 		
-		rotationForce += rotationForce * rotationMultiplicator * deltaTime;
+		rotationForce += rotationForce * rotationMultiplicator;
 		if (rotationForce > maxRotationForce) rotationForce = maxRotationForce;
 		rotation += rotationChange * rotationForce;
 	}
@@ -60,5 +68,6 @@ void MeleeWeapon::update(float deltaTime, sf::Vector2f entityPos, sf::Vector2i m
 	// apply rotation
 	damageHitbox.setRotation(rotation);
 	damageHitboxRect.setRotation(rotation);
+	rect.setRotation(rotation);
 
 }

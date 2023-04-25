@@ -5,6 +5,10 @@
 [x] Ennemies :
 		(x) Health bar (Entity class)
 [ ] Melee weapons :
+	
+		( ) Timer for invincibility
+		( ) Knockback
+
 		( ) Sword
 		( ) Mace
 [ ] Range weapons :
