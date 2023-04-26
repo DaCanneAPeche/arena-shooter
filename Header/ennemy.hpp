@@ -13,5 +13,8 @@ public:
 
 private:
 	bool invincibility;
+	const float takenKnockback = 1;
+
+	sf::Vector2f calculateKnockback(const MeleeWeapon& weapon);
 
 };

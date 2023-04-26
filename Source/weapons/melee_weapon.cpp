@@ -2,19 +2,21 @@
 #include <cmath>
 
 MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
-			float _damage) {
+			float _damage, float _knockback) {
 
 	rotationSpeed = _rotationSpeed;
 	maxRotationForce = _maxRotationForce;
 	rotationMultiplicator = _rotationMultiplicator;
 	damage = _damage;
+	knockback = _knockback;
 
 	damageHitboxRect.setFillColor(sf::Color::Yellow);
 	rotation = 0;
 	rotationForce = 1;
 }
 
-void MeleeWeapon::update(float deltaTime, sf::Vector2f entityPos, sf::Vector2i mousePos) {
+void MeleeWeapon::update(float deltaTime, sf::Vector2f _entityPos, sf::Vector2i mousePos) {
+	entityPos = _entityPos;
 	// Make a rotation between 0 and 360 deg
 	if (rotation > 360) rotation -= 360;
 	else if (rotation < 0) rotation += 360;

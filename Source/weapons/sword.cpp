@@ -1,7 +1,7 @@
 #include "weapons/sword.hpp"
 
 	// MeleeWeapon(float _rotationSpeed, _rotationForce, _maxRotationForce, float _rotationMultiplicator);
-Sword::Sword() : MeleeWeapon(200, 4, 0.2, 100)  {
+Sword::Sword() : MeleeWeapon(200, 4, 0.2, 100, 4)  {
 		// rect.setTextureRect(sf::IntRect(0, 0, 8, 4));
 		// damageHitbox.setTextureRect(sf::IntRect(0, 0, 6, 4));
 		// TODO: rect is the texture
