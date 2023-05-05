@@ -10,7 +10,7 @@ class Player : public Entity
 public:
 	// Player(sf::Vector2i pos);
 	using Entity::Entity;
-	void handleMovement(float deltaTime);
+	void handleMovement();
 
 	float horizontalSpeed;
 	float verticalSpeed;

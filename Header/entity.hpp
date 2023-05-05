@@ -5,19 +5,20 @@
 
 class Entity {
 public:
-	Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life);
+	Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life, float& _deltaTime);
 	sf::RectangleShape getRect();
 	void damage(float amount);
 
 	HealthBar healthBar;
 	sf::Rect<float> rect;
-
-private:
 	float life;
 
+private:
+
 protected:
-	void move(float horizontalValue, float verticalValue, float deltaTime);
+	void move(float horizontalValue, float verticalValue);
 	sf::Sprite sprite;
 	sf::RectangleShape r;
+	float& deltaTime;
 
 };

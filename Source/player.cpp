@@ -1,7 +1,7 @@
 #include "player.hpp"
 #include <iostream>
 
-void Player::handleMovement(float deltaTime) {
+void Player::handleMovement() {
 
     // Player's movement
     bool movingHorizontaly = false;
@@ -62,8 +62,7 @@ void Player::handleMovement(float deltaTime) {
 
 
     move(horizontalSpeed, 
-            verticalSpeed,
-            deltaTime);
+            verticalSpeed);
 
 }
 

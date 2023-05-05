@@ -1,7 +1,11 @@
 #include "game.hpp"
 #include <iostream>
 
-Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100) {
+void print() {
+    std::cout << "Trolololololololololololololo !!!" << std::endl;
+}
+
+Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100, deltaTime) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
     //window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -9,8 +13,10 @@ Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Gre
     
     texture.create(250, 250);
 
-    auto ennemy = std::make_shared<Ennemy>(sf::Vector2i(100, 100));
+    auto ennemy = std::make_shared<Ennemy>(sf::Vector2i(100, 100), deltaTime);
     ennemies.push_back(ennemy);
+
+    testTimer.setTimer(print, 5);
 }
 
 int Game::run() {
@@ -34,15 +40,22 @@ void Game::handleEvents() {
 void Game::update() {
     deltaTime = dtClock.restart().asSeconds();
 
-    player.handleMovement(deltaTime);
+    player.handleMovement();
     player.meleeWeapon.update(deltaTime, sf::Vector2f(player.rect.left, player.rect.top), 
             sf::Mouse::getPosition(window));
 
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
-        ennemy.get()->healthBar.update();
         ennemy.get()->checkDamages(player.meleeWeapon);
+
+        if (ennemy.get()->life > 0) {
+            ennemy.get()->moveToKb();
+            ennemy.get()->healthBar.update();
+        }
+        else ennemies.erase(std::remove(ennemies.begin(), ennemies.end(), ennemy), ennemies.end());
     }
+
+    testTimer.checkTime();
 
 }
 

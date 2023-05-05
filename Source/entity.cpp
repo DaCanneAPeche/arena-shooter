@@ -1,8 +1,8 @@
 #include "entity.hpp"
 #include <iostream>
 
-Entity::Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life) : 
-	rect(pos.x, pos.y, size.x, size.y), healthBar(rect.left, rect.top, life, _life) {
+Entity::Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life, float& _deltaTime) : 
+	rect(pos.x, pos.y, size.x, size.y), healthBar(rect.left, rect.top, life, _life), deltaTime(_deltaTime) {
 
 	sprite.setScale(size.x, size.y);
 	sprite.setPosition(pos.x, pos.y);
@@ -12,7 +12,7 @@ Entity::Entity(sf::Vector2i pos, sf::Vector2i size, sf::Color color, float _life
 
 }
 
-void Entity::move(float horizontalValue, float verticalValue, float deltaTime) {
+void Entity::move(float horizontalValue, float verticalValue) {
 	rect.left += horizontalValue * deltaTime;
 	rect.top += verticalValue * deltaTime;
 

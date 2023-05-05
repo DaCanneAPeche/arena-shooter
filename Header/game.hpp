@@ -4,6 +4,7 @@
 #include "ennemy.hpp"
 #include "weapons/melee_weapon.hpp"
 #include "weapons/sword.hpp"
+#include "timer.hpp"
 // #include "debuger.hpp"
 #include <memory>
 
@@ -26,6 +27,8 @@ private:
 	void handleEvents();
 	void update();
 	void render();
+
+	Timer testTimer;
 
 public:
 	Game();
