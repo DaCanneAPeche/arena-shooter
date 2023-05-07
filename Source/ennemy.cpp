@@ -5,7 +5,6 @@
 #include <utility>
 #include <cmath>
 
-void check() {}
 
 Ennemy::Ennemy(sf::Vector2i pos, float& _deltaTime) : 
 	Entity(pos, sf::Vector2i(8, 8), sf::Color::Red, 400, _deltaTime) {
@@ -21,7 +20,7 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 	
 	if (testCollision(r, weapon.damageHitboxRect, mtv) && !invincibility) {
 		invincibility = true;
-		timer.setTimer(check, 3);
+		timer.setTimer(1);
 		damage(weapon.damage * weapon.rotationForce);
 
 		kb = calculateKnockback(weapon);
@@ -33,7 +32,7 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 		// std::cout << deltaTime << std::endl;
 	}
 
-	if (timer.checkTime()) invincibility = false;
+	if (timer.checkTime(false)) invincibility = false;
 
 	return false;
 }

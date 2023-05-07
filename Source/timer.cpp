@@ -11,10 +11,21 @@ void Timer::setTimer(void (*_func)(), float _time) {
 	clock.restart();
 }
 
-bool Timer::checkTime() {
+void Timer::setTimer(float _time) {
+	time = _time;
+
+	clock.restart();
+}
+
+void Timer::reset() {
+	time = 0;
+}
+
+
+bool Timer::checkTime(bool hasCallback) {
 	if (clock.getElapsedTime().asSeconds() >= time && time > 0) {
 		time = 0;
-		func();
+		if (hasCallback) func();
 		return true;
 	}
 

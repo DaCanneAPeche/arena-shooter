@@ -43,6 +43,7 @@ void Game::update() {
     player.handleMovement();
     player.meleeWeapon.update(deltaTime, sf::Vector2f(player.rect.left, player.rect.top), 
             sf::Mouse::getPosition(window));
+    player.meleeWeapon.checkLoading();
 
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {

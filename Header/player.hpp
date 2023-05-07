@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "entity.hpp"
 #include "weapons/melee_weapon.hpp"
+#include "weapons/bow.hpp"
 #include "weapons/sword.hpp"
 
 class Player : public Entity
@@ -19,7 +20,7 @@ public:
 									 			 DECELERATION = 8,
 									 			 VELOCITY_CAP = 200;
 
-	Sword meleeWeapon;
+	Bow meleeWeapon;
 
 private:
 

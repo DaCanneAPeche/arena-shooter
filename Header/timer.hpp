@@ -14,8 +14,10 @@ private:
 public:
 	Timer();
 	void setTimer(void(*_func)(), float _time);
+	void setTimer(float _time);
 
-	bool checkTime();
+	bool checkTime(bool hasCallback = true);
+	void reset();
 };
 
 #endif /* TIMER_H */
