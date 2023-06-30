@@ -4,7 +4,8 @@
 class Bow : public RangeWeapon {
 public:
 	Bow();
+	Bow(const Bow&);
 
 private:
-	/* data */
+	virtual void onShot() override;
 };

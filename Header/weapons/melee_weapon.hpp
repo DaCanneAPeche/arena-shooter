@@ -7,6 +7,7 @@ class MeleeWeapon {
 public:
 	MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
 			float _damage, float _knockback);
+	MeleeWeapon(const MeleeWeapon& obj);
 	void update(float deltaTime, sf::Vector2f _entityPos, sf::Vector2i mousePos);
 	sf::Sprite rect;
 	sf::Sprite damageHitbox;

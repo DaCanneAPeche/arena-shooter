@@ -1,10 +1,9 @@
 #include "weapons/range_weapon.hpp"
 #include "SFML/Window/Mouse.hpp"
+#include "weapons/bow.hpp"
 
-RangeWeapon::RangeWeapon(float _range, float _power, int _percing) : MeleeWeapon(1000, 1, 0, 1, 8)  {
-	range = _range;
-	power = _power;
-	percing = _percing;
+RangeWeapon::RangeWeapon(float _range, float _power, int _percing) : MeleeWeapon(1000, 1, 0, 1, 8),
+						 infos{_range, _power, _percing} {
 
 	state = 0;
 	pressed = false;
@@ -15,12 +14,9 @@ void RangeWeapon::checkLoading() {
 		if (pressed) {
 			if (loadingTimer.checkTime(false)) {
 				if (state < 3) {
-					std::cout << "LOADING" << std::endl;
+					onLoad();
 					state++;
 					loadingTimer.setTimer(LOADING_TIME);	
-				}
-				else {
-					std::cout << "LOADED" << std::endl;
 				}
 			}
 		}
@@ -32,10 +28,18 @@ void RangeWeapon::checkLoading() {
 	else {
 		
 		if (state >= 3)
-			std::cout << "SHOT" << std::endl;
+			onShot();
 
 		pressed = false;
 		state = 0;
 		loadingTimer.reset();
 	}
+}
+
+void RangeWeapon::onLoad() {
+	std::cout << "Loading not implemented" << std::endl;
+}
+
+void RangeWeapon::onShot() {
+	std::cout << "Shot not implemented" << std::endl;
 }
