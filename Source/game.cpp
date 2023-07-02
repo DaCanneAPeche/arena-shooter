@@ -5,7 +5,7 @@ void print() {
     std::cout << "Trolololololololololololololo !!!" << std::endl;
 }
 
-Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Green, 100, deltaTime) {
+Game::Game() : player(sf::Vector2f(121, 121), sf::Vector2f(8, 8), sf::Color::Green, 100, deltaTime) {
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
     //window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -13,7 +13,7 @@ Game::Game() : player(sf::Vector2i(121, 121), sf::Vector2i(8, 8), sf::Color::Gre
     
     texture.create(250, 250);
 
-    auto ennemy = std::make_shared<Ennemy>(sf::Vector2i(100, 100), deltaTime);
+    auto ennemy = std::make_shared<Ennemy>(sf::Vector2f(100, 100), deltaTime);
     ennemies.push_back(ennemy);
 
     testTimer.setTimer(print, 5);
@@ -38,12 +38,13 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+    std::cout << player.meleeWeapon.sprite.rect.getSize().x << std::endl;
     deltaTime = dtClock.restart().asSeconds();
 
     player.handleMovement();
-    player.meleeWeapon.update(deltaTime, sf::Vector2f(player.rect.left, player.rect.top), 
+    player.meleeWeapon.update(sf::Vector2f(player.sprite.pos.x, player.sprite.pos.y), 
             sf::Mouse::getPosition(window));
-    player.meleeWeapon.checkLoading();
+    // player.rangeWeapon.checkLoading();
 
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
@@ -71,15 +72,15 @@ void Game::render() {
         std::cout << ennemy.healthBar.entityPosX << std::endl;
     }*/
 
-    texture.draw(player.meleeWeapon.damageHitboxRect);
+    texture.draw(player.meleeWeapon.sprite.rect);
 
     for(const auto& ennemy : ennemies) {
-        texture.draw(ennemy->getRect());
+        texture.draw(ennemy->sprite.rect);
         texture.draw(ennemy->healthBar.bgRect);
         texture.draw(ennemy->healthBar.fgRect);
     }
 
-    texture.draw(player.getRect());
+    texture.draw(player.sprite.rect);
     texture.draw(player.healthBar.bgRect);
     texture.draw(player.healthBar.fgRect);
 

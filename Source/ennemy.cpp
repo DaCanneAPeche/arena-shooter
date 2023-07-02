@@ -6,8 +6,8 @@
 #include <cmath>
 
 
-Ennemy::Ennemy(sf::Vector2i pos, float& _deltaTime) : 
-	Entity(pos, sf::Vector2i(8, 8), sf::Color::Red, 400, _deltaTime) {
+Ennemy::Ennemy(sf::Vector2f pos, float& _deltaTime) : 
+	Entity(pos, sf::Vector2f(8, 8), sf::Color::Red, 4000, _deltaTime) {
 	invincibility = false;
 	verticalKb = 0;
 	horizontalKb = 0;
@@ -16,9 +16,8 @@ Ennemy::Ennemy(sf::Vector2i pos, float& _deltaTime) :
 bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 
 	// MeleeWeapon m_weapon = std::move(weapon);
-	sf::Vector2f mtv;
 	
-	if (testCollision(r, weapon.damageHitboxRect, mtv) && !invincibility) {
+	if (sprite.collide(weapon.sprite) && !invincibility) {
 		invincibility = true;
 		timer.setTimer(1);
 		damage(weapon.damage * weapon.rotationForce);
@@ -40,8 +39,8 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 sf::Vector2f Ennemy::calculateKnockback(const MeleeWeapon& weapon) {
 	sf::Vector2f _kb;
 	float kbAmount = weapon.knockback * weapon.rotationForce * takenKnockback;
-	float x = rect.left / 4 - weapon.entityPos.x / 4,
-				y = rect.top / 4 - weapon.entityPos.y / 4;
+	float x = sprite.pos.x / 4 - weapon.entityPos.x / 4,
+				y = sprite.pos.y / 4 - weapon.entityPos.y / 4;
 	float hypotenuse = std::sqrt(x * x + y * y);
 
 	_kb.x = kbAmount * x / hypotenuse;

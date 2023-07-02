@@ -2,18 +2,21 @@
 
 #include "SFML/Graphics.hpp"
 #include <iostream>
+#include "sprite.hpp"
 
 class MeleeWeapon {
 public:
 	MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
-			float _damage, float _knockback);
+			float _damage, float _knockback, float& _deltaTime);
 	MeleeWeapon(const MeleeWeapon& obj);
-	void update(float deltaTime, sf::Vector2f _entityPos, sf::Vector2i mousePos);
-	sf::Sprite rect;
+	void update(sf::Vector2f _entityPos, sf::Vector2i mousePos);
+	/* sf::Sprite rect;
 	sf::Sprite damageHitbox;
 	sf::RectangleShape damageHitboxRect;
 	sf::RenderTexture textureRect;
-	sf::RenderTexture textureDamage;
+	sf::RenderTexture textureDamage; */
+
+	Sprite sprite;
 
 	float damage;
 	float rotationForce;
@@ -26,5 +29,6 @@ protected:
 	float maxRotationForce;
 	float rotationMultiplicator;
 	bool rotationDirection;
+	float& deltaTime;
 
 };

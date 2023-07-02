@@ -8,7 +8,7 @@ class Ennemy : public Entity
 {
 public:
 	// using Entity::Entity;
-	Ennemy(sf::Vector2i pos, float& _deltaTime);
+	Ennemy(sf::Vector2f pos, float& _deltaTime);
 	Timer timer;
 
 	bool checkDamages(const MeleeWeapon& weapon);

@@ -2,7 +2,8 @@
 #include "SFML/Window/Mouse.hpp"
 #include "weapons/bow.hpp"
 
-RangeWeapon::RangeWeapon(float _range, float _power, int _percing) : MeleeWeapon(1000, 1, 0, 1, 8),
+RangeWeapon::RangeWeapon(float& _deltaTime, float _range, float _power, int _percing) : 
+	MeleeWeapon(1000, 1, 0, 1, 8, _deltaTime),
 						 infos{_range, _power, _percing} {
 
 	state = 0;

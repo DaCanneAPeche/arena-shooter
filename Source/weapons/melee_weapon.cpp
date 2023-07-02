@@ -1,8 +1,9 @@
 #include "weapons/melee_weapon.hpp"
 #include <cmath>
 
-MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
-			float _damage, float _knockback) {
+MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, 
+		float _rotationMultiplicator, float _damage, float _knockback, float& _deltaTime) : 
+	sprite(sf::Vector2f(0, 0), sf::Vector2f(0, 0), sf::Color::Yellow, _deltaTime), deltaTime(_deltaTime) {
 
 	rotationSpeed = _rotationSpeed;
 	maxRotationForce = _maxRotationForce;
@@ -10,22 +11,22 @@ MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _r
 	damage = _damage;
 	knockback = _knockback;
 
-	damageHitboxRect.setFillColor(sf::Color::Yellow);
+	// damageHitboxRect.setFillColor(sf::Color::Yellow);
 	rotation = 0;
 	rotationForce = 1;
 }
 
-void MeleeWeapon::update(float deltaTime, sf::Vector2f _entityPos, sf::Vector2i mousePos) {
+void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
 	entityPos = _entityPos;
 	// Make a rotation between 0 and 360 deg
 	if (rotation > 360) rotation -= 360;
 	else if (rotation < 0) rotation += 360;
 
 	float cursorRotation;
-	sf::Vector2f origin = damageHitbox.getOrigin();
-	damageHitbox.setPosition(entityPos.x - origin.x/2, entityPos.y + origin.y);
-	damageHitboxRect.setPosition(damageHitbox.getPosition());
-	rect.setPosition(damageHitbox.getPosition());
+	sf::Vector2f origin = sprite.rect.getOrigin();
+	sprite.setPosition(entityPos.x - origin.x/2, entityPos.y + origin.y);
+	// damageHitboxRect.setPosition(damageHitbox.getPosition());
+	// rect.setPosition(damageHitbox.getPosition());
 
 	// angle as radiant
 	float rad = atan((entityPos.y - mousePos.y / 4) / (entityPos.x - mousePos.x / 4));
@@ -68,8 +69,8 @@ void MeleeWeapon::update(float deltaTime, sf::Vector2f _entityPos, sf::Vector2i 
 	}
 
 	// apply rotation
-	damageHitbox.setRotation(rotation);
-	damageHitboxRect.setRotation(rotation);
-	rect.setRotation(rotation);
+	sprite.rect.setRotation(rotation);
+	// damageHitboxRect.setRotation(rotation);
+	// rect.setRotation(rotation);
 
 }

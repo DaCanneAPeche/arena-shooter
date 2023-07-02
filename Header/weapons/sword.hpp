@@ -5,7 +5,7 @@
 class Sword : public MeleeWeapon
 {
 public:
-	Sword();
+	Sword(float& _deltaTime);
 
 protected:
 };

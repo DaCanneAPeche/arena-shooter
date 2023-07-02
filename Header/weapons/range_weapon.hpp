@@ -9,7 +9,7 @@ class RangeWeapon : public MeleeWeapon
 public:
 	static constexpr float LOADING_TIME = 0.5;
 
-	RangeWeapon(float _range, float _power, int _percing = 0);
+	RangeWeapon(float& _deltaTime, float _range, float _power, int _percing = 0);
 	RangeWeapon(const RangeWeapon& obj);
 	void checkLoading();
 

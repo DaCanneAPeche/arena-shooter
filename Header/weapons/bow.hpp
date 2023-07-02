@@ -3,7 +3,7 @@
 
 class Bow : public RangeWeapon {
 public:
-	Bow();
+	Bow(float& _deltaTime);
 	Bow(const Bow&);
 
 private:
