@@ -5,6 +5,6 @@
 
 
 BasicArrow::BasicArrow(RangeWeaponInfos info, float& _deltaTime) : 
-	Projectile(info, 10, 10, 10, sf::Vector2f(10, 2), _deltaTime) {
+	Projectile(info, 10, 10, 300, sf::Vector2f(10, 2), _deltaTime) {
 }
 

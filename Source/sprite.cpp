@@ -3,12 +3,12 @@
 
 Sprite::Sprite(sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, float& _deltaTime) : 
 				deltaTime(_deltaTime) {
+	
+	pos = defaultPos;
 
 	rect.setSize(size);
 	rect.setPosition(defaultPos);
 	rect.setFillColor(color);
-
-	pos = defaultPos;
 
 }
 

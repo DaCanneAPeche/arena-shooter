@@ -9,5 +9,6 @@ struct RangeWeaponInfos {
 	int	percing;
 
 	sf::Vector2f entityPos;
+	float rotation;
 
 };

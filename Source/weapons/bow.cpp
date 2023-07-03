@@ -13,5 +13,6 @@ Bow::Bow(float& _deltaTime) : RangeWeapon(_deltaTime, 10, 3, 1) {
 
 void Bow::onShot() {
 	infos.entityPos = entityPos;
+	infos.rotation = rotation;
 	projectiles.push_back(std::make_shared<BasicArrow>(BasicArrow(infos, deltaTime)));
 }

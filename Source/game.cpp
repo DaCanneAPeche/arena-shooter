@@ -53,6 +53,9 @@ void Game::update() {
         player.rangeWeapon.checkLoading();
     }
 
+    for (const auto& projectile : player.rangeWeapon.projectiles)
+        projectile.get()->update();
+
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
         if (player.weaponUsed == 'm')
