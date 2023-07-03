@@ -20,6 +20,8 @@ public:
 									 			 DECELERATION = 8,
 									 			 VELOCITY_CAP = 200;
 
+	char weaponUsed;
+
 
 private:
 

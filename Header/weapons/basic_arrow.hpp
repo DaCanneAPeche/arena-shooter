@@ -4,5 +4,5 @@
 class BasicArrow : public Projectile {
 
 	public:
-		BasicArrow(RangeWeaponInfos info);
+		BasicArrow(RangeWeaponInfos info, float& _deltaTime);
 };

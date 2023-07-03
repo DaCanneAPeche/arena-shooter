@@ -69,7 +69,7 @@ void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
 	}
 
 	// apply rotation
-	sprite.rect.setRotation(rotation);
+	sprite.setRotation(rotation);
 	// damageHitboxRect.setRotation(rotation);
 	// rect.setRotation(rotation);
 

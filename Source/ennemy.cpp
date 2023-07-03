@@ -1,9 +1,9 @@
 #include "ennemy.hpp"
-#include "../Tools/collision.hpp"
+#include "utils/collision.hpp"
 #include "weapons/melee_weapon.hpp"
 #include <iostream>
 #include <utility>
-#include <cmath>
+#include "utils/move_diagonally.hpp"
 
 
 Ennemy::Ennemy(sf::Vector2f pos, float& _deltaTime) : 
@@ -22,7 +22,8 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 		timer.setTimer(1);
 		damage(weapon.damage * weapon.rotationForce);
 
-		kb = calculateKnockback(weapon);
+		// kb = calculateKnockback(weapon);
+		kb = moveDiagonally(weapon.knockback * weapon.rotationForce * takenKnockback, weapon.entityPos, sprite);
 
 		horizontalKb = kb.x;
 		verticalKb = kb.y;
@@ -36,7 +37,7 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
 	return false;
 }
 
-sf::Vector2f Ennemy::calculateKnockback(const MeleeWeapon& weapon) {
+/* sf::Vector2f Ennemy::calculateKnockback(const MeleeWeapon& weapon) {
 	sf::Vector2f _kb;
 	float kbAmount = weapon.knockback * weapon.rotationForce * takenKnockback;
 	float x = sprite.pos.x / 4 - weapon.entityPos.x / 4,
@@ -47,7 +48,7 @@ sf::Vector2f Ennemy::calculateKnockback(const MeleeWeapon& weapon) {
 	_kb.y = kbAmount * y / hypotenuse;
 
 	return _kb;
-}
+}*/
 
 void Ennemy::moveToKb() {
 

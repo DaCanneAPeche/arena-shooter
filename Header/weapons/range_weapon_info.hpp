@@ -1,4 +1,5 @@
 #pragma once
+#include "SFML/System/Vector2.hpp"
 
 struct RangeWeaponInfos {
 
@@ -6,5 +7,7 @@ struct RangeWeaponInfos {
 				power;
 
 	int	percing;
+
+	sf::Vector2f entityPos;
 
 };

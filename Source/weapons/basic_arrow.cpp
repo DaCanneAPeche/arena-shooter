@@ -4,7 +4,7 @@
 #include "weapons/bow.hpp"
 
 
-BasicArrow::BasicArrow(RangeWeaponInfos info) : 
-	Projectile(info, 10, 10, 10) {
+BasicArrow::BasicArrow(RangeWeaponInfos info, float& _deltaTime) : 
+	Projectile(info, 10, 10, 10, sf::Vector2f(10, 2), _deltaTime) {
 }
 

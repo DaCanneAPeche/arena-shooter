@@ -11,6 +11,7 @@ public:
 	sf::Vector2f pos;
 	void move(float x, float y);
 	void setPosition(float x, float y);
+	void setRotation(float angle);
 	bool collide(Sprite otherSprite);
 
 private:

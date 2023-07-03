@@ -1,5 +1,5 @@
 #include "sprite.hpp"
-#include "Tools/collision.hpp"
+#include "utils/collision.hpp"
 
 Sprite::Sprite(sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, float& _deltaTime) : 
 				deltaTime(_deltaTime) {
@@ -24,6 +24,10 @@ void Sprite::setPosition(float x, float y) {
 	pos.y = y;
 
 	rect.setPosition(pos);
+}
+
+void Sprite::setRotation(float angle) {
+	rect.setRotation(angle);
 }
 
 bool Sprite::collide(Sprite otherSprite) {
