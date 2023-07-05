@@ -13,23 +13,39 @@ Ennemy::Ennemy(sf::Vector2f pos, float& _deltaTime) :
 	horizontalKb = 0;
 }
 
-bool Ennemy::checkDamages(const MeleeWeapon& weapon) {
+bool Ennemy::checkDamages(const MeleeWeapon& weapon, std::vector<std::shared_ptr<BasicArrow>> projectiles) {
 
 	// MeleeWeapon m_weapon = std::move(weapon);
 	
-	if (sprite.collide(weapon.sprite) && !invincibility) {
-		invincibility = true;
-		timer.setTimer(1);
-		damage(weapon.damage * weapon.rotationForce);
+	if (!invincibility) {
+	
+		if (sprite.collide(weapon.sprite)) {
+			damage(weapon.damage * weapon.rotationForce);
 
-		// kb = calculateKnockback(weapon);
-		kb = moveDiagonally(weapon.knockback * weapon.rotationForce * takenKnockback, weapon.entityPos, sprite);
+			// kb = calculateKnockback(weapon);
+			kb = moveDiagonally(weapon.knockback * weapon.rotationForce * takenKnockback,
+					weapon.entityPos, sprite);
 
-		horizontalKb = kb.x;
-		verticalKb = kb.y;
+			horizontalKb = kb.x;
+			verticalKb = kb.y;
 
-		// move(kb.x, kb.y);
-		// std::cout << deltaTime << std::endl;
+			// move(kb.x, kb.y);
+			// std::cout << deltaTime << std::endl;
+		}
+
+		for (const auto& projectile : projectiles) {
+			if (sprite.collide(projectile.get()->sprite)) {
+
+				kb = moveDiagonally(damage(projectile->weaponInfo.power * projectile->damage) / 10 * takenKnockback,
+						projectile->weaponInfo.entityPos, sprite);
+
+				horizontalKb = kb.x;
+				verticalKb = kb.y;
+
+				break;
+			}
+		}
+		 
 	}
 
 	if (timer.checkTime(false)) invincibility = false;

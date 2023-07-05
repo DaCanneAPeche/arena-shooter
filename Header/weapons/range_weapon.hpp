@@ -15,6 +15,7 @@ public:
 	RangeWeapon(float& _deltaTime, float _range, float _power, int _percing = 0);
 	RangeWeapon(const RangeWeapon& obj);
 	void checkLoading();
+	void checkProjectiles();
 	std::vector<std::shared_ptr<BasicArrow>> projectiles;
 
 protected:

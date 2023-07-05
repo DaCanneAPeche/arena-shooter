@@ -53,19 +53,21 @@ void Game::update() {
         player.rangeWeapon.checkLoading();
     }
 
+    player.rangeWeapon.checkProjectiles();
+
     for (const auto& projectile : player.rangeWeapon.projectiles)
         projectile.get()->update();
 
     player.healthBar.update();
     for (const auto& ennemy : ennemies) {
         if (player.weaponUsed == 'm')
-            ennemy.get()->checkDamages(player.meleeWeapon);
+            ennemy->checkDamages(player.meleeWeapon, player.rangeWeapon.projectiles);
         else
-            ennemy.get()->checkDamages(player.rangeWeapon);
+            ennemy->checkDamages(player.rangeWeapon, player.rangeWeapon.projectiles);
 
-        if (ennemy.get()->life > 0) {
-            ennemy.get()->moveToKb();
-            ennemy.get()->healthBar.update();
+        if (ennemy->life > 0) {
+            ennemy->moveToKb();
+            ennemy->healthBar.update();
         }
         else ennemies.erase(std::remove(ennemies.begin(), ennemies.end(), ennemy), ennemies.end());
     }
@@ -91,7 +93,7 @@ void Game::render() {
         texture.draw(player.rangeWeapon.sprite.rect);
 
     for (const auto& projectile : player.rangeWeapon.projectiles) {
-        texture.draw(projectile.get()->sprite.rect);
+        texture.draw(projectile->sprite.rect);
     }
 
     for(const auto& ennemy : ennemies) {

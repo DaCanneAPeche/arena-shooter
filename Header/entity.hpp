@@ -10,7 +10,7 @@ class Entity {
 public:
 	Entity(sf::Vector2f pos, sf::Vector2f size, sf::Color color, float _life, float& _deltaTime);
 	// sf::RectangleShape getRect();
-	void damage(float amount);
+	float damage(float amount);
 
 	HealthBar healthBar;
 	// sf::Rect<float> rect;
@@ -26,5 +26,7 @@ protected:
 	// sf::Sprite sprite;
 	// sf::RectangleShape r;
 	float& deltaTime;
+	Timer timer;
+	bool invincibility;
 
 };

@@ -2,6 +2,9 @@
 
 #include "entity.hpp"
 #include "weapons/melee_weapon.hpp"
+#include "weapons/basic_arrow.hpp"
+#include <memory>
+#include <vector>
 #include "timer.hpp"
 
 class Ennemy : public Entity
@@ -9,13 +12,11 @@ class Ennemy : public Entity
 public:
 	// using Entity::Entity;
 	Ennemy(sf::Vector2f pos, float& _deltaTime);
-	Timer timer;
 
-	bool checkDamages(const MeleeWeapon& weapon);
+	bool checkDamages(const MeleeWeapon& weapon, std::vector<std::shared_ptr<BasicArrow>> projectiles);
 	void moveToKb();
 
 private:
-	bool invincibility;
 	sf::Vector2f kb;
 	const float takenKnockback = 1;
 

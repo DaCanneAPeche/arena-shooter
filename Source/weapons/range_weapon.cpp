@@ -1,6 +1,7 @@
 #include "weapons/range_weapon.hpp"
 #include "SFML/Window/Mouse.hpp"
 #include "weapons/bow.hpp"
+#include <algorithm>
 
 RangeWeapon::RangeWeapon(float& _deltaTime, float _range, float _power, int _percing) : 
 	MeleeWeapon(1000, 1, 0, 1, 8, _deltaTime),
@@ -34,6 +35,17 @@ void RangeWeapon::checkLoading() {
 		pressed = false;
 		state = 0;
 		loadingTimer.reset();
+	}
+}
+
+void RangeWeapon::checkProjectiles() {
+	for (const auto& projectile : projectiles) {
+		if (projectile->getTraveledDistance() >= projectile->range * infos.range) {
+
+			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), projectile),
+					projectiles.end());
+
+		}
 	}
 }
 

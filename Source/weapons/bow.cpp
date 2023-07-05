@@ -2,7 +2,7 @@
 #include "weapons/basic_arrow.hpp"
 #include <memory>
 
-Bow::Bow(float& _deltaTime) : RangeWeapon(_deltaTime, 10, 3, 1) {
+Bow::Bow(float& _deltaTime) : RangeWeapon(_deltaTime, 10, 10, 1) {
 		sprite.rect.setSize(sf::Vector2f(8, 10));
 		// damageHitboxRect.setSize(sf::Vector2f(8, 12));
 		sprite.rect.setOrigin(-6.5, 5);

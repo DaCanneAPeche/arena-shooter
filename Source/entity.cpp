@@ -31,7 +31,11 @@ void Entity::move(float horizontalValue, float verticalValue) {
 }
 */
 
-void Entity::damage(float amount) {
+float Entity::damage(float amount) {
 	life -= amount;
+	invincibility = true;
+	timer.setTimer(1);
+
+	return amount;
 }
 

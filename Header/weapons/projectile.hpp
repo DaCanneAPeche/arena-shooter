@@ -9,13 +9,14 @@ public:
 			float& _deltaTime);
 	Sprite sprite;
 	void update();
+	RangeWeaponInfos weaponInfo;
+	float damage,
+				range;
+	float getTraveledDistance();
 
 protected:
-	float damage,
-				range,
-				speed;
-
-	RangeWeaponInfos weaponInfo;
+	float speed;
 	float& deltaTime;
+
 
 };
