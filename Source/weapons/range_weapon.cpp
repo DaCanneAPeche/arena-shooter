@@ -1,17 +1,18 @@
 #include "weapons/range_weapon.hpp"
 #include "SFML/Window/Mouse.hpp"
-#include "weapons/bow.hpp"
+// #include "weapons/bow.hpp"
 #include <algorithm>
+#include "entity_creator.hpp"
 
-RangeWeapon::RangeWeapon(float& _deltaTime, float _range, float _power, int _percing) : 
-	MeleeWeapon(1000, 1, 0, 1, 8, _deltaTime),
+RangeWeapon::RangeWeapon(float& _deltaTime, float _range, float _power, int _percing, sf::Vector2f size) : 
+	MeleeWeapon(1000, 1, 0, 1, 8, size, _deltaTime),
 						 infos{_range, _power, _percing} {
 
 	state = 0;
 	pressed = false;
 }
 
-void RangeWeapon::checkLoading() {
+void RangeWeapon::checkLoading(EntityCreator& entityCreator) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 		if (pressed) {
 			if (loadingTimer.checkTime(false)) {
@@ -30,7 +31,7 @@ void RangeWeapon::checkLoading() {
 	else {
 		
 		if (state >= 3)
-			onShot();
+			onShot(entityCreator);
 
 		pressed = false;
 		state = 0;
@@ -40,7 +41,8 @@ void RangeWeapon::checkLoading() {
 
 void RangeWeapon::checkProjectiles() {
 	for (const auto& projectile : projectiles) {
-		if (projectile->getTraveledDistance() >= projectile->range * infos.range) {
+		if ((projectile->getTraveledDistance() >= projectile->range * infos.range) || 
+				(projectile->percing < 0)) {
 
 			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), projectile),
 					projectiles.end());
@@ -50,9 +52,10 @@ void RangeWeapon::checkProjectiles() {
 }
 
 void RangeWeapon::onLoad() {
-	std::cout << "Loading not implemented" << std::endl;
 }
 
-void RangeWeapon::onShot() {
-	std::cout << "Shot not implemented" << std::endl;
+void RangeWeapon::onShot(EntityCreator& entityCreator) {
+	infos.entityPos = entityPos;
+	infos.rotation = cursorRotation;
+	projectiles.push_back(entityCreator.getProjectile("basic_arrow", infos));
 }

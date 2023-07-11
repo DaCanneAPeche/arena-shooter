@@ -12,6 +12,7 @@ public:
 	void move(float x, float y);
 	void setPosition(float x, float y);
 	void setRotation(float angle);
+	void setOrigin(float x, float y);
 	bool collide(Sprite otherSprite);
 
 private:

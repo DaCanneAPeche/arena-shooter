@@ -6,25 +6,29 @@
 #include "utils/move_diagonally.hpp"
 
 
-Ennemy::Ennemy(sf::Vector2f pos, float& _deltaTime) : 
-	Entity(pos, sf::Vector2f(8, 8), sf::Color::Red, 4000, _deltaTime) {
+Ennemy::Ennemy(sf::Vector2f pos, float life, float _strenght, float _takenKnockback, float width,
+			float height, float& _deltaTime) :
+	Entity(pos, sf::Vector2f(width, height), sf::Color::Red, life, _deltaTime) {
 	invincibility = false;
 	verticalKb = 0;
 	horizontalKb = 0;
+
+	takenKnockback = _takenKnockback;
+	strenght = _strenght;
 }
 
-bool Ennemy::checkDamages(const MeleeWeapon& weapon, std::vector<std::shared_ptr<BasicArrow>> projectiles) {
+bool Ennemy::checkDamages(std::shared_ptr<MeleeWeapon> weapon, std::vector<std::shared_ptr<Projectile>> projectiles) {
 
 	// MeleeWeapon m_weapon = std::move(weapon);
 	
 	if (!invincibility) {
 	
-		if (sprite.collide(weapon.sprite)) {
-			damage(weapon.damage * weapon.rotationForce);
+		if (sprite.collide(weapon->sprite)) {
+			damage(weapon->damage * weapon->rotationForce);
 
 			// kb = calculateKnockback(weapon);
-			kb = moveDiagonally(weapon.knockback * weapon.rotationForce * takenKnockback,
-					weapon.entityPos, sprite);
+			kb = moveDiagonally(weapon->knockback * weapon->rotationForce * takenKnockback,
+					weapon->entityPos, sprite);
 
 			horizontalKb = kb.x;
 			verticalKb = kb.y;
@@ -41,6 +45,7 @@ bool Ennemy::checkDamages(const MeleeWeapon& weapon, std::vector<std::shared_ptr
 
 				horizontalKb = kb.x;
 				verticalKb = kb.y;
+				projectile->percing--;
 
 				break;
 			}

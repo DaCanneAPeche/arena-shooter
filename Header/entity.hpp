@@ -3,8 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "health_bar.hpp"
 #include "sprite.hpp"
-#include "weapons/sword.hpp"
-#include "weapons/bow.hpp"
+#include "timer.hpp"
 
 class Entity {
 public:
@@ -16,8 +15,6 @@ public:
 	// sf::Rect<float> rect;
 	float life;
 	Sprite sprite;
-	Sword meleeWeapon;
-	Bow rangeWeapon;
 
 private:
 

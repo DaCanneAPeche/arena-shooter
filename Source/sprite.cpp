@@ -30,6 +30,10 @@ void Sprite::setRotation(float angle) {
 	rect.setRotation(angle);
 }
 
+void Sprite::setOrigin(float x, float y) {
+	rect.setOrigin(x, y);
+}
+
 bool Sprite::collide(Sprite otherSprite) {
 	sf::Vector2f mtv;
 	return testCollision(rect, otherSprite.rect, mtv);

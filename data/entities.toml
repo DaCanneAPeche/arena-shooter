@@ -1,0 +1,37 @@
+[enemies]
+
+	[enemies.gobelin]
+	life = 800
+	takenKnockback = 1
+	strenght = 10
+	width = 8
+	height = 8
+
+[melee_weapons]
+
+	[melee_weapons.sword]
+	rotationSpeed = 200
+	maxRotationForce = 4
+	rotationMultiplicator = 0.2
+	damage = 100
+	knockback = 4
+	width = 12
+	height = 8
+
+[range_weapons]
+
+	[range_weapons.bow]
+	range = 10
+	power = 10
+	percing = 3
+	width = 8
+	height = 10
+
+[projectiles]
+
+	[projectiles.basic_arrow]
+	damage = 10
+	range = 10
+	speed = 300
+	width = 10
+	height = 2

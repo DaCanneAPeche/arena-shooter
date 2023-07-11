@@ -14,6 +14,8 @@ public:
 				range;
 	float getTraveledDistance();
 
+	int percing;
+
 protected:
 	float speed;
 	float& deltaTime;

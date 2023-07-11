@@ -3,10 +3,10 @@
 #include "player.hpp"
 #include "ennemy.hpp"
 #include "weapons/melee_weapon.hpp"
-#include "weapons/sword.hpp"
 #include "timer.hpp"
 // #include "debuger.hpp"
 #include <memory>
+#include "entity_creator.hpp"
 
 #ifndef GAME_H
 #define GAME_H
@@ -29,6 +29,8 @@ private:
 	void render();
 
 	Timer testTimer;
+
+	EntityCreator entityCreator;
 
 public:
 	Game();

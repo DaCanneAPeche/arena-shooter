@@ -4,7 +4,7 @@
 Entity::Entity(sf::Vector2f pos, sf::Vector2f size, sf::Color color, float _life, float& _deltaTime) : 
 	sprite(size, pos, color, _deltaTime), 
 	healthBar(sprite.pos.x, sprite.pos.y, life, _life), 
-	deltaTime(_deltaTime), meleeWeapon(_deltaTime), rangeWeapon(_deltaTime) {
+	deltaTime(_deltaTime) {
 
 	// sprite.setScale(size.x, size.y);
 	// sprite.setPosition(pos.x, pos.y);

@@ -3,8 +3,8 @@
 #include "SFML/Graphics.hpp"
 #include "entity.hpp"
 #include "weapons/melee_weapon.hpp"
-#include "weapons/bow.hpp"
-#include "weapons/sword.hpp"
+#include "weapons/range_weapon.hpp"
+#include <memory>
 
 class Player : public Entity
 {
@@ -21,7 +21,8 @@ public:
 									 			 VELOCITY_CAP = 200;
 
 	char weaponUsed;
-
+	std::shared_ptr<MeleeWeapon> meleeWeapon;
+	std::shared_ptr<RangeWeapon> rangeWeapon;
 
 private:
 

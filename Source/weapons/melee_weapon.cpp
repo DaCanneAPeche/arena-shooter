@@ -2,8 +2,8 @@
 #include <cmath>
 
 MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, 
-		float _rotationMultiplicator, float _damage, float _knockback, float& _deltaTime) : 
-	sprite(sf::Vector2f(0, 0), sf::Vector2f(0, 0), sf::Color::Yellow, _deltaTime), deltaTime(_deltaTime) {
+		float _rotationMultiplicator, float _damage, float _knockback, sf::Vector2f size, float& _deltaTime) : 
+	sprite(size, sf::Vector2f(0, 0), sf::Color::Yellow, _deltaTime), deltaTime(_deltaTime) {
 
 	rotationSpeed = _rotationSpeed;
 	maxRotationForce = _maxRotationForce;
@@ -14,6 +14,8 @@ MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce,
 	// damageHitboxRect.setFillColor(sf::Color::Yellow);
 	rotation = 0;
 	rotationForce = 1;
+
+	sprite.setOrigin(-10, size.y / 2);
 }
 
 void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
@@ -22,7 +24,6 @@ void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
 	if (rotation > 360) rotation -= 360;
 	else if (rotation < 0) rotation += 360;
 
-	float cursorRotation;
 	sf::Vector2f origin = sprite.rect.getOrigin();
 	sprite.setPosition(entityPos.x - origin.x/2, entityPos.y + origin.y);
 	// damageHitboxRect.setPosition(damageHitbox.getPosition());

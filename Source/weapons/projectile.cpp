@@ -1,5 +1,5 @@
 #include "weapons/projectile.hpp"
-#include "weapons/bow.hpp"
+// #include "weapons/bow.hpp"
 #include "utils/move_diagonally.hpp"
 #include <iostream>
 #include <cmath>
@@ -13,6 +13,7 @@ Projectile::Projectile(RangeWeaponInfos info, float _damage, float _range, float
 	speed = _speed;
 
 	weaponInfo = info;
+	percing = weaponInfo.percing;
 	
 	sprite.setPosition(sprite.pos.x + 4, sprite.pos.y + 4);
 	sprite.setRotation(weaponInfo.rotation);
