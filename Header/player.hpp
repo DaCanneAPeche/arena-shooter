@@ -8,9 +8,9 @@
 
 class Player : public Entity
 {
-public:
-	// Player(sf::Vector2i pos);
-	using Entity::Entity;
+public: 
+	Player(sf::Vector2f pos, float& _deltaTime);
+	// using Entity::Entity;
 	void handleMovement();
 
 	float horizontalSpeed;

@@ -4,6 +4,7 @@
 #include "ennemy.hpp"
 #include "weapons/melee_weapon.hpp"
 #include "timer.hpp"
+#include "npc.hpp"
 // #include "debuger.hpp"
 #include <memory>
 #include "entity_creator.hpp"
@@ -28,7 +29,7 @@ private:
 	void update();
 	void render();
 
-	Timer testTimer;
+	std::vector<std::shared_ptr<Npc>> npcs;
 
 	EntityCreator entityCreator;
 

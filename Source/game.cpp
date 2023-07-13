@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include <iostream>
 
-Game::Game() : player(sf::Vector2f(121, 121), sf::Vector2f(8, 8), sf::Color::Green, 100, deltaTime),
+Game::Game() : player(sf::Vector2f(121, 121), deltaTime),
                entityCreator("data/entities.toml", deltaTime) {
 
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
@@ -16,16 +16,9 @@ Game::Game() : player(sf::Vector2f(121, 121), sf::Vector2f(8, 8), sf::Color::Gre
     
     std::shared_ptr<Ennemy> enemy = entityCreator.getEnemy("gobelin", sf::Vector2f(50, 100));
     ennemies.push_back(enemy);
-    std::shared_ptr<Ennemy> enemy1 = entityCreator.getEnemy("gobelin", sf::Vector2f(70, 100));
-    ennemies.push_back(enemy1);
-    std::shared_ptr<Ennemy> enemy2 = entityCreator.getEnemy("gobelin", sf::Vector2f(90, 100));
-    ennemies.push_back(enemy2);
-    std::shared_ptr<Ennemy> enemy3 = entityCreator.getEnemy("gobelin", sf::Vector2f(110, 100));
-    ennemies.push_back(enemy3);
-    std::shared_ptr<Ennemy> enemy4 = entityCreator.getEnemy("gobelin", sf::Vector2f(130, 100));
-    ennemies.push_back(enemy4);
-    std::shared_ptr<Ennemy> enemy5 = entityCreator.getEnemy("gobelin", sf::Vector2f(150, 100));
-    ennemies.push_back(enemy5);
+
+    std::shared_ptr<Npc> npc = std::make_shared<Npc>(sf::Vector2f(200, 150), deltaTime);
+    npcs.push_back(npc);
 
     player.meleeWeapon = entityCreator.getMeleeWeapon("sword");
     player.rangeWeapon = entityCreator.getRangeWeapon("bow");
@@ -77,7 +70,6 @@ void Game::update() {
 
     player.healthBar.update();
     for (auto it = ennemies.begin() ; it < ennemies.end() ; ) {
-        std::cout << "HIHI" << std::endl;
         int i = std::distance(ennemies.begin(), it); 
         
         if (!( i < ennemies.size() )) break;
@@ -95,8 +87,6 @@ void Game::update() {
         else ennemies.erase(it);
     }
 
-    testTimer.checkTime();
-
 }
 
 void Game::render() {
@@ -110,22 +100,33 @@ void Game::render() {
         std::cout << ennemy.healthBar.entityPosX << std::endl;
     }*/
 
-    if (player.weaponUsed == 'm')
-        texture.draw(player.meleeWeapon->sprite.rect);
-    else
-        texture.draw(player.rangeWeapon->sprite.rect);
+    if (player.weaponUsed == 'm') {
+        // texture.draw(player.meleeWeapon->sprite.rect);
+        texture.draw(player.meleeWeapon->sprite.sprite);
+    }
+    else {
+        // texture.draw(player.rangeWeapon->sprite.rect);
+        texture.draw(player.rangeWeapon->sprite.sprite);
+    }
 
     for (const auto& projectile : player.rangeWeapon->projectiles) {
-        texture.draw(projectile->sprite.rect);
+        // texture.draw(projectile->sprite.rect);
+        texture.draw(projectile->sprite.sprite);
+    }
+
+    for (const auto& npc : npcs) {
+        texture.draw(npc->sprite.sprite);
     }
 
     for(const auto& ennemy : ennemies) {
-        texture.draw(ennemy->sprite.rect);
+        // texture.draw(ennemy->sprite.rect);
+        texture.draw(ennemy->sprite.sprite);
         texture.draw(ennemy->healthBar.bgRect);
         texture.draw(ennemy->healthBar.fgRect);
     }
 
-    texture.draw(player.sprite.rect);
+    // texture.draw(player.sprite.rect);
+    texture.draw(player.sprite.sprite);
     texture.draw(player.healthBar.bgRect);
     texture.draw(player.healthBar.fgRect);
 

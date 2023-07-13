@@ -4,19 +4,31 @@
 [x] Player movements
 [x] Ennemies :
 		(x) Health bar (Entity class)
-[ ] Melee weapons :
+[x] Melee weapons :
 	
-		( ) Timer for invincibility
-		( ) Knockback
+		(x) Timer for invincibility
+		(x) Knockback
 
-		( ) Sword
+		(x) Sword
 		( ) Mace
-[ ] Range weapons :
-		( ) Bow
+[x] Range weapons :
+		(x) Bow
 		( ) Cross bow
+
+[x] Graphics
+[ ] Npc
+[ ] Camera
+[ ] Enemy IA
+[ ] Animations
+[ ] Custom scripts :
+
+	( ) Crossbow
+	( ) Fireworks projectiles
+
+[ ] Magic
 
 Bugs ! :
 
 Possible optimizations :
-- use references to attach the rectangle shape to his shape
 - refactor rotation code (lot of repetitions)
+- load textures at the beginning

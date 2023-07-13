@@ -1,8 +1,9 @@
 #include "entity.hpp"
 #include <iostream>
 
-Entity::Entity(sf::Vector2f pos, sf::Vector2f size, sf::Color color, float _life, float& _deltaTime) : 
-	sprite(size, pos, color, _deltaTime), 
+Entity::Entity(sf::Vector2f pos, sf::Vector2f size, sf::Color color, float _life, std::string assetName,
+		float& _deltaTime, sf::Vector2f offset) : 
+	sprite(size, pos, color, assetName, _deltaTime, offset), 
 	healthBar(sprite.pos.x, sprite.pos.y, life, _life), 
 	deltaTime(_deltaTime) {
 

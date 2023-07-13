@@ -2,8 +2,9 @@
 #include <cmath>
 
 MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce, 
-		float _rotationMultiplicator, float _damage, float _knockback, sf::Vector2f size, float& _deltaTime) : 
-	sprite(size, sf::Vector2f(0, 0), sf::Color::Yellow, _deltaTime), deltaTime(_deltaTime) {
+		float _rotationMultiplicator, float _damage, float _knockback, sf::Vector2f size, float& _deltaTime,
+		std::string assetName) : 
+	sprite(size, sf::Vector2f(0, 0), sf::Color::Yellow, assetName, _deltaTime), deltaTime(_deltaTime) {
 
 	rotationSpeed = _rotationSpeed;
 	maxRotationForce = _maxRotationForce;
@@ -54,7 +55,9 @@ void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
 
 		rotationForce += rotationForce * rotationMultiplicator;
 		if (rotationForce > maxRotationForce) rotationForce = maxRotationForce;
-		rotation -= rotationChange * rotationForce;
+		if (rotation + rotationChange * rotationForce > cursorRotation)
+			rotation -= rotationChange * rotationForce;
+		else rotation = cursorRotation;
 	}
 
 	else if (a > 0 && (a - rotationChange) > 0) {
@@ -66,7 +69,9 @@ void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
 		
 		rotationForce += rotationForce * rotationMultiplicator;
 		if (rotationForce > maxRotationForce) rotationForce = maxRotationForce;
-		rotation += rotationChange * rotationForce;
+		if (rotation + rotationChange * rotationForce < cursorRotation)
+			rotation += rotationChange * rotationForce;
+		else rotation = cursorRotation;
 	}
 
 	// apply rotation

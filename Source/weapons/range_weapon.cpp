@@ -5,7 +5,7 @@
 #include "entity_creator.hpp"
 
 RangeWeapon::RangeWeapon(float& _deltaTime, float _range, float _power, int _percing, sf::Vector2f size) : 
-	MeleeWeapon(1000, 1, 0, 1, 8, size, _deltaTime),
+	MeleeWeapon(1000, 1, 0, 1, 8, size, _deltaTime, "range_weapons"),
 						 infos{_range, _power, _percing} {
 
 	state = 0;

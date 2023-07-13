@@ -1,6 +1,12 @@
 #include "player.hpp"
 #include <iostream>
 
+
+Player::Player(sf::Vector2f pos, float& _deltaTime) :
+    Entity(pos, sf::Vector2f(8, 8), sf::Color::Red, 400, "player", _deltaTime, sf::Vector2f(-8, 0)) {
+
+}
+
 void Player::handleMovement() {
 
     // Player's movement

@@ -1,12 +1,15 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include <string>
 
 class Sprite
 {
 public:
-	Sprite (sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, float& _deltaTime);
+	Sprite (sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, std::string assetName, 
+			float& _deltaTime, sf::Vector2f _offset = sf::Vector2f(0, 0));
 	sf::RectangleShape rect;
+	sf::Sprite sprite;
 
 	sf::Vector2f pos;
 	void move(float x, float y);
@@ -17,5 +20,7 @@ public:
 
 private:
 	float& deltaTime;
+	sf::Texture texture;
+	sf::Vector2f offset;
 
 };

@@ -14,7 +14,7 @@ std::shared_ptr<Ennemy> EntityCreator::getEnemy(std::string name, sf::Vector2f p
 				width = tomlTable["enemies"][name]["width"].value<float>().value(),
 				height = tomlTable["enemies"][name]["height"].value<float>().value();
 
-	return std::make_shared<Ennemy>(pos, life, strenght, takenKnockback, width, height, deltaTime);
+	return std::make_shared<Ennemy>(pos, life, strenght, takenKnockback, width, height, name, deltaTime);
 
 }
 
