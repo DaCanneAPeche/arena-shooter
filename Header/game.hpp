@@ -8,6 +8,7 @@
 // #include "debuger.hpp"
 #include <memory>
 #include "entity_creator.hpp"
+#include "camera.hpp"
 
 #ifndef GAME_H
 #define GAME_H
@@ -32,6 +33,7 @@ private:
 	std::vector<std::shared_ptr<Npc>> npcs;
 
 	EntityCreator entityCreator;
+	Camera camera;
 
 public:
 	Game();

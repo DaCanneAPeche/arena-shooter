@@ -8,8 +8,10 @@ class Sprite
 public:
 	Sprite (sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, std::string assetName, 
 			float& _deltaTime, sf::Vector2f _offset = sf::Vector2f(0, 0));
+	// Sprite (const Sprite&);
 	sf::RectangleShape rect;
 	sf::Sprite sprite;
+	sf::Vector2f offset;
 
 	sf::Vector2f pos;
 	void move(float x, float y);
@@ -18,9 +20,10 @@ public:
 	void setOrigin(float x, float y);
 	bool collide(Sprite otherSprite);
 
+	void draw(sf::RenderTexture& surface, sf::Vector2f cameraOffset);
+
 private:
 	float& deltaTime;
 	sf::Texture texture;
-	sf::Vector2f offset;
 
 };

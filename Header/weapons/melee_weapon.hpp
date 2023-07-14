@@ -9,7 +9,7 @@ public:
 	MeleeWeapon(float _rotationSpeed, float _maxRotationForce, float _rotationMultiplicator, 
 			float _damage, float _knockback, sf::Vector2f size, float& _deltaTime, std::string assetName = "melee_weapons");
 	MeleeWeapon(const MeleeWeapon& obj);
-	void update(sf::Vector2f _entityPos, sf::Vector2i mousePos);
+	void update(sf::Vector2f _entityPos, sf::Vector2i mousePos, sf::Vector2f cameraOffset);
 	/* sf::Sprite rect;
 	sf::Sprite damageHitbox;
 	sf::RectangleShape damageHitboxRect;

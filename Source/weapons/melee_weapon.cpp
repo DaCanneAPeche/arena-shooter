@@ -19,19 +19,20 @@ MeleeWeapon::MeleeWeapon(float _rotationSpeed, float _maxRotationForce,
 	sprite.setOrigin(-10, size.y / 2);
 }
 
-void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos) {
+void MeleeWeapon::update(sf::Vector2f _entityPos, sf::Vector2i mousePos, sf::Vector2f cameraOffset) {
 	entityPos = _entityPos;
 	// Make a rotation between 0 and 360 deg
 	if (rotation > 360) rotation -= 360;
 	else if (rotation < 0) rotation += 360;
 
 	sf::Vector2f origin = sprite.rect.getOrigin();
-	sprite.setPosition(entityPos.x - origin.x/2, entityPos.y + origin.y);
+	sprite.setPosition(entityPos.x + cameraOffset.x - 2 * origin.x, entityPos.y + cameraOffset.y + origin.y);
 	// damageHitboxRect.setPosition(damageHitbox.getPosition());
 	// rect.setPosition(damageHitbox.getPosition());
 
 	// angle as radiant
-	float rad = atan((entityPos.y - mousePos.y / 4) / (entityPos.x - mousePos.x / 4));
+	float rad = atan((entityPos.y - mousePos.y / 4 ) /
+			(entityPos.x - mousePos.x / 4));
 
 	// angle as deg between 0 and 360
 	if (mousePos.x / 4 > entityPos.x) cursorRotation = rad * 180 / M_PI;

@@ -48,3 +48,8 @@ bool Sprite::collide(Sprite otherSprite) {
 	sf::Vector2f mtv;
 	return testCollision(rect, otherSprite.rect, mtv);
 }
+
+void Sprite::draw(sf::RenderTexture& surface, sf::Vector2f cameraOffset) {
+	sprite.setPosition(pos.x - cameraOffset.x, pos.y - cameraOffset.y);
+	surface.draw(sprite);
+}
