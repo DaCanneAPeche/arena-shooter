@@ -16,8 +16,8 @@
 		( ) Cross bow
 
 [x] Graphics
-[ ] Npc
-[ ] Camera
+[x] Npc
+[x] Camera
 [ ] Enemy IA
 [ ] Animations
 [ ] Custom scripts :

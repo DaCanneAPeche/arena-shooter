@@ -7,20 +7,23 @@
 
 
 Ennemy::Ennemy(sf::Vector2f pos, float life, float _strenght, float _takenKnockback, float width,
-			float height, std::string assetName, float& _deltaTime) :
-	Entity(pos, sf::Vector2f(width, height), sf::Color::Red, life, assetName, _deltaTime) {
+			float height, std::string assetName, std::vector<std::shared_ptr<Ennemy>>& _enemies,
+			std::vector<std::shared_ptr<Npc>>& _npcs, const Player& _player, float& _deltaTime) : 
+	Entity(pos, sf::Vector2f(width, height), sf::Color::Red, life, assetName, _deltaTime), player(_player),
+	npcs(_npcs), enemies(_enemies) {
+
 	invincibility = false;
 	verticalKb = 0;
 	horizontalKb = 0;
 
 	takenKnockback = _takenKnockback;
 	strenght = _strenght;
+
 }
 
 bool Ennemy::checkDamages(std::shared_ptr<MeleeWeapon> weapon, std::vector<std::shared_ptr<Projectile>> projectiles) {
 
 	// MeleeWeapon m_weapon = std::move(weapon);
-	
 	if (!invincibility) {
 	
 		if (sprite.collide(weapon->sprite)) {

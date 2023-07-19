@@ -6,7 +6,9 @@ EntityCreator::EntityCreator(std::string fileName, float& _deltaTime) : deltaTim
 	tomlTable = toml::parse_file(fileName);
 }
 
-std::shared_ptr<Ennemy> EntityCreator::getEnemy(std::string name, sf::Vector2f pos) {
+std::shared_ptr<Ennemy> EntityCreator::getEnemy(std::string name, sf::Vector2f pos,
+			std::vector<std::shared_ptr<Ennemy>>& enemies, std::vector<std::shared_ptr<Npc>>& npcs, 
+			const Player& player) {
 	
 	float life = tomlTable["enemies"][name]["life"].value<float>().value(),
 				strenght = tomlTable["enemies"][name]["strenght"].value<float>().value(),
@@ -14,7 +16,8 @@ std::shared_ptr<Ennemy> EntityCreator::getEnemy(std::string name, sf::Vector2f p
 				width = tomlTable["enemies"][name]["width"].value<float>().value(),
 				height = tomlTable["enemies"][name]["height"].value<float>().value();
 
-	return std::make_shared<Ennemy>(pos, life, strenght, takenKnockback, width, height, name, deltaTime);
+	return std::make_shared<Ennemy>(pos, life, strenght, takenKnockback, width, height,
+			name, enemies, npcs, player, deltaTime);
 
 }
 
