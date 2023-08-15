@@ -29,10 +29,12 @@ public:
 	void behave();
 	//	bool checkDamages(std::shared_ptr<RangeWeapon> weapon, std::vector<std::shared_ptr<BasicArrow>> projectiles);
 	void moveToKb();
+	void playerFound();
 
 private:
-	const float vision = 30;
+	const float vision = 10;
 	const float speed = 80;
+	const float VOICE = 100;
 
 	sf::Vector2f kb;
 	float takenKnockback, strenght;

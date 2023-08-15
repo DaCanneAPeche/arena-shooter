@@ -100,14 +100,13 @@ void Ennemy::behave() {
 				int direction = rng(0, 3);
 				int distance = rng(40, 100);
 
-				switch (direction) {
-					case 0: nextPos = sf::Vector2f(sprite.pos.x + distance, sprite.pos.y); break;
-					case 1: nextPos = sf::Vector2f(sprite.pos.x - distance, sprite.pos.y); break;
-					case 2: nextPos = sf::Vector2f(sprite.pos.x, sprite.pos.y + distance); break;
-					case 3: nextPos = sf::Vector2f(sprite.pos.x, sprite.pos.y - distance); break;
+					switch (direction) {
+						case 0: nextPos = sf::Vector2f(sprite.pos.x + distance, sprite.pos.y); break;
+						case 1: nextPos = sf::Vector2f(sprite.pos.x - distance, sprite.pos.y); break;
+						case 2: nextPos = sf::Vector2f(sprite.pos.x, sprite.pos.y + distance); break;
+						case 3: nextPos = sf::Vector2f(sprite.pos.x, sprite.pos.y - distance); break;
 						
-				}
-
+					}
 			}
 			
 			closestSprite = std::make_shared<Sprite>(getClosestSprite());
@@ -140,6 +139,11 @@ void Ennemy::behave() {
 			break;
 
 		case (behaviors::attackingPlayer):
+
+			for (const auto& enemy : enemies) {
+				if (getDistance(enemy->sprite.pos) <= VOICE)
+					enemy->playerFound();
+			}
 
 			if (!verticalKb && !horizontalKb)
 				moveToPos(player.sprite.pos);
@@ -196,4 +200,8 @@ bool Ennemy::moveToPos(sf::Vector2f pos) {
 	}
 	else return true;
 
+}
+
+void Ennemy::playerFound() {
+	state = behaviors::attackingPlayer;
 }

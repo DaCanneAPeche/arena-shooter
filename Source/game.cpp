@@ -20,6 +20,7 @@ Game::Game() : player(sf::Vector2f(130, 100), deltaTime),
     std::shared_ptr<Ennemy> enemy = entityCreator.getEnemy("gobelin", sf::Vector2f(50, 100),
             ennemies, npcs, player);
     ennemies.push_back(enemy);
+    ennemies.push_back(entityCreator.getEnemy("gobelin", sf::Vector2f(40, 90), ennemies, npcs, player));
 
     std::shared_ptr<Npc> npc = std::make_shared<Npc>(sf::Vector2f(200, 150), deltaTime);
     npcs.push_back(npc);
