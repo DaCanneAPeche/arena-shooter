@@ -16,7 +16,6 @@ Projectile::Projectile(RangeWeaponInfos info, float _damage, float _range, float
 	weaponInfo = info;
 	percing = weaponInfo.percing;
 
-	std::cout << "Pos x : " << weaponInfo.entityPos.x << std::endl;
 
 	sprite.setPosition(sprite.pos.x, sprite.pos.y);
 	sprite.setRotation(weaponInfo.rotation);

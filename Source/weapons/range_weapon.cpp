@@ -57,6 +57,5 @@ void RangeWeapon::onLoad() {
 void RangeWeapon::onShot(EntityCreator& entityCreator) {
 	infos.entityPos = sprite.pos;
 	infos.rotation = cursorRotation;
-	std::cout << sprite.pos.x << std::endl;
 	projectiles.push_back(entityCreator.getProjectile("basic_arrow", infos));
 }

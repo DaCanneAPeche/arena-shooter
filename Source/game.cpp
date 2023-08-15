@@ -1,7 +1,9 @@
 #include "game.hpp"
 #include <iostream>
 
-Game::Game() : player(sf::Vector2f(121, 121), deltaTime),
+#include "utils/rng.hpp"
+
+Game::Game() : player(sf::Vector2f(130, 100), deltaTime),
                entityCreator("data/entities.toml", deltaTime) {
 
     window.create(sf::VideoMode(1000, 1000), "[SFML]");
@@ -13,7 +15,7 @@ Game::Game() : player(sf::Vector2f(121, 121), deltaTime),
 
     // auto ennemy = std::make_shared<Ennemy>(sf::Vector2f(100, 100), deltaTime);
     // ennemies.push_back(ennemy);
-    npcs.push_back(std::make_shared<Npc>(sf::Vector2f(200, 100), deltaTime));
+    npcs.push_back(std::make_shared<Npc>(sf::Vector2f(70, 100), deltaTime));
     
     std::shared_ptr<Ennemy> enemy = entityCreator.getEnemy("gobelin", sf::Vector2f(50, 100),
             ennemies, npcs, player);
@@ -25,6 +27,7 @@ Game::Game() : player(sf::Vector2f(121, 121), deltaTime),
     player.meleeWeapon = entityCreator.getMeleeWeapon("sword");
     player.rangeWeapon = entityCreator.getRangeWeapon("bow");
     player.weaponUsed = 'r';
+
 }
 
 int Game::run() {
@@ -77,6 +80,8 @@ void Game::update() {
         int i = std::distance(ennemies.begin(), it); 
         
         if (!( i < ennemies.size() )) break;
+
+        ennemies[i]->behave();
 
         if (player.weaponUsed == 'm')
             ennemies[i]->checkDamages(player.meleeWeapon, player.rangeWeapon->projectiles);

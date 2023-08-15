@@ -8,7 +8,13 @@ class Sprite
 public:
 	Sprite (sf::Vector2f size, sf::Vector2f defaultPos, sf::Color color, std::string assetName, 
 			float& _deltaTime, sf::Vector2f _offset = sf::Vector2f(0, 0));
-	// Sprite (const Sprite&);
+	Sprite (const Sprite& obj) : deltaTime(obj.deltaTime) {
+		pos = obj.pos;
+		offset = obj.offset;
+		rect = obj.rect;
+		sprite = obj.sprite;
+	}
+
 	sf::RectangleShape rect;
 	sf::Sprite sprite;
 	sf::Vector2f offset;

@@ -18,7 +18,8 @@
 [x] Graphics
 [x] Npc
 [x] Camera
-[ ] Enemy IA
+[ ] Enemy IA -> call other enemies
+[ ] From OOP to DUM
 [ ] Animations
 [ ] Custom scripts :
 
@@ -28,6 +29,7 @@
 [ ] Magic
 
 Bugs ! :
+	- arrow not shooting exactly at the mouse cursor
 
 Possible optimizations :
 - refactor rotation code (lot of repetitions)

@@ -22,9 +22,9 @@ public:
 	float rotationForce;
 	float knockback;
 	sf::Vector2f entityPos;
+	float rotation;
 
 protected:
-	float rotation;
 	float rotationSpeed;
 	float maxRotationForce;
 	float rotationMultiplicator;
